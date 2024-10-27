@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+        "name": "Debug Pytest Test",
+        "type": "debugpy",
+        "request": "launch",
+        // "program": "${workspaceFolder}/tests/test_tensor.py",  // Path to the test file
+        "module": "pytest",
+        "args": ["tests/test_tensor.py", "-k", "test_permute"],  // Replace with the specific test function name
+        "console": "integratedTerminal",
+        "justMyCode": true,
+        "python": "${workspaceFolder}/.m2venv/Scripts/python.exe",
+        "env": {
+            "PYTHONPATH": "${workspaceFolder}"
+        }
+        }
+    ]
+}
