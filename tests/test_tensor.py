@@ -4,10 +4,12 @@ import pytest
 from hypothesis import given
 from hypothesis.strategies import DataObject, data, lists, permutations
 
-from minitorch import MathTestVariable, Tensor, grad_check, tensor
+from minitorch import MathTestVariable, Tensor, grad_check, tensor, operators
 
-from .strategies import assert_close, small_floats
-from .tensor_strategies import shaped_tensors, tensors
+# from .strategies import assert_close, small_floats
+# from .tensor_strategies import shaped_tensors, tensors
+from tests.strategies import assert_close, small_floats
+from tests.tensor_strategies import shaped_tensors, tensors
 
 one_arg, two_arg, red_arg = MathTestVariable._comp_testing()
 
@@ -30,6 +32,14 @@ def test_one_args(
     name, base_fn, tensor_fn = fn
     t2 = tensor_fn(t1)
     for ind in t2._tensor.indices():
+        # if not operators.is_close(t2[ind], base_fn(t1[ind])):
+        #     raise Exception("mop")
+        #     print(f"fname={name}")
+        #     print(f"t1={t1}")
+        #     print(f"t2={t2}")
+        #     print(f"t2[ind]={t2[ind]}, base_fn(t1[ind])={base_fn(t1[ind])}")
+        #     assert False
+
         assert_close(t2[ind], base_fn(t1[ind]))
 
 
